@@ -1,8 +1,7 @@
 {
-  "buildCommand": "pnpm build",
-  "devCommand": "pnpm dev",
-  "installCommand": "pnpm install --no-frozen-lockfile",
-  "framework": "nextjs",
+  "installCommand": "npm install",
+  "buildCommand": "npm run build",
+  "devCommand": "npm run dev",
   "functions": {
     "app/api/abeba-payment/route.ts": {
       "maxDuration": 30
@@ -25,12 +24,6 @@
           "value": "Content-Type, Authorization"
         }
       ]
-    }
-  ],
-  "rewrites": [
-    {
-      "source": "/pay",
-      "destination": "/pay"
     }
   ]
 }
