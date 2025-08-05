@@ -8,6 +8,7 @@ import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Checkbox } from "@/components/ui/checkbox"
 import { UserAgreementModal } from "@/components/user-agreement-modal"
+import { abebaCardSystem } from "@/lib/abeba-card-system"
 
 interface NewAuthScreenProps {
   onLogin: (userData: any) => void
@@ -95,19 +96,27 @@ export function NewAuthScreen({ onLogin }: NewAuthScreenProps) {
     // Симуляция регистрации
     await new Promise(resolve => setTimeout(resolve, 2000))
     
+    // Создание ABEBA-карты для нового пользователя
+    const userId = `user_${Date.now()}`
+    const abebaCard = abebaCardSystem.createCard(userId, formData.username)
+    
+    // Пополнение карты бонусом за регистрацию
+    abebaCardSystem.addBalance(abebaCard.cardNumber, 10.0)
+    
     const userData = {
-      id: Date.now(),
+      id: userId,
       username: formData.username,
       balance: 10.0, // Бонус за регистрацию
       abebaBalance: 5.0, // Бонус ABEBA
-      cardNumber: "4444 1111 2222 " + Math.floor(1000 + Math.random() * 9000),
-      cardHolder: "ABEBA USER",
-      cardExpiry: "07/30",
-      cardCVV: String(Math.floor(100 + Math.random() * 900)),
+      cardNumber: abebaCard.cardNumber,
+      cardHolder: abebaCard.cardHolder,
+      cardExpiry: abebaCard.expiryDate,
+      cardCVV: abebaCard.cvv,
       hasFingerprint: useFingerprint,
       hasPinCode: formData.pinCode !== "",
       securityQuestions: formData.selectedQuestions.map(i => securityQuestions[i]),
-      securityAnswers: formData.securityAnswers
+      securityAnswers: formData.securityAnswers,
+      abebaCardId: abebaCard.id
     }
     
     setLoading(false)

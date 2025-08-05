@@ -9,7 +9,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { 
   Wallet, QrCode, Send, ArrowDownToLine, Store, TrendingUp, Settings, 
   LogOut, Copy, Eye, EyeOff, Plus, Wifi, CreditCard, Gift, Shield,
-  Bell, User, Home, BarChart3, Zap, DollarSign, Smartphone
+  Bell, User, Home, BarChart3, Zap, DollarSign, Smartphone, Code
 } from 'lucide-react'
 import { AnimatedCard } from "@/components/animated-card"
 import { RealBuyAbebaModal } from "@/components/real-buy-abeba-modal"
@@ -19,6 +19,7 @@ import { RealQRScanner } from "@/components/real-qr-scanner"
 import { RealNFCPayment } from "@/components/real-nfc-payment"
 import { BusinessDashboard } from "@/components/business-dashboard"
 import { Analytics } from "@/components/analytics"
+import { AbebaIntegrationGenerator } from "@/components/abeba-integration-generator"
 import { Toaster } from "sonner"
 import { toast } from "sonner"
 
@@ -279,8 +280,10 @@ export function NewMainApp({ user, onLogout }: NewMainAppProps) {
             <BusinessDashboard user={user} />
           </TabsContent>
 
-          <TabsContent value="analytics" className="mt-0">
-            <Analytics />
+          <TabsContent value="integration" className="mt-0">
+            <div className="p-4">
+              <AbebaIntegrationGenerator user={user} />
+            </div>
           </TabsContent>
 
           <TabsContent value="profile" className="mt-0">
@@ -304,7 +307,7 @@ export function NewMainApp({ user, onLogout }: NewMainAppProps) {
             { id: "home", icon: Home, label: "Главная" },
             { id: "wallet", icon: Wallet, label: "Кошелёк" },
             { id: "business", icon: Store, label: "Бизнес" },
-            { id: "analytics", icon: BarChart3, label: "Аналитика" },
+            { id: "integration", icon: Code, label: "Интеграция" },
             { id: "profile", icon: User, label: "Профиль" }
           ].map((tab) => (
             <button
