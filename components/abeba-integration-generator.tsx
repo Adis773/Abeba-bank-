@@ -2,7 +2,7 @@
 
 import { useState } from "react"
 import { motion } from "framer-motion"
-import { Copy, Code, Iframe, Download, CheckCircle } from "lucide-react"
+import { Copy, Code, Monitor, Download, CheckCircle } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
@@ -332,10 +332,10 @@ app.get('/validate-abeba-card/:cardNumber', async (req, res) => {
           <Card>
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
-                <span className="flex items-center space-x-2">
-                  <Iframe className="w-5 h-5" />
-                  <span>Iframe интеграция</span>
-                </span>
+                                 <span className="flex items-center space-x-2">
+                   <Monitor className="w-5 h-5" />
+                   <span>Iframe интеграция</span>
+                 </span>
                 <Button
                   variant="outline"
                   size="sm"
